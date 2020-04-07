@@ -33,6 +33,8 @@ auth.post('/register',
 
       newUser.save();
 
+      res.status(201).json({message: 'Пользователь зарегестрирован'});
+
     } catch (e) {
       console.log(e);
       return res.status(500).json('something went wrong');
