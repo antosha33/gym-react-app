@@ -1,0 +1,4 @@
+{
+  "mongoUri": "mongodb+srv://brokkoly:brokkoly1122@cluster0-etp3k.mongodb.net/test?retryWrites=true&w=majority",
+  "PORT": 5000
+}
