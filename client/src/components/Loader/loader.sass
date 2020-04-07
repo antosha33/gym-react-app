@@ -1,0 +1,55 @@
+.box 
+  position: absolute
+  top: -50px
+  left: calc(50% - 68px)
+  .content 
+    height: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    background-image: url(./logo.png)
+    background-size: cover
+  width: 130px
+  height: 130px
+  box-sizing: border-box
+  padding: 6px
+  overflow: hidden
+
+  .content
+    position: relative
+    background-color: white
+    flex-direction: column
+    box-sizing: border-box
+    padding: 30px
+    text-align: center
+    font-family: sans-serif
+    z-index: 2
+    box-shadow: 0 0 2px green, 0 0 5px rgba(0, 0, 0, 1), inset 0 0 5px rgba(0, 0, 0, 1)
+    border-radius: 10px
+
+    h2
+      color: deeppink
+
+    p
+      color: dimgray
+
+  box-shadow: 0 0 2px green, 0 0 5px rgba(0, 0, 0, 1), inset 0 0 5px rgba(0, 0, 0, 1)
+  border-radius: 10px
+
+.active  
+  &::before
+    content: ''
+    position: absolute
+    width: 150%
+    height: 150%
+    background: repeating-linear-gradient(white 0%, white 7.5px, green 7.5px, green 15px, white 15px, white 22.5px, green 22.5px, green 30px)
+    transform: translateX(-20%) translateY(-20%) rotate(-45deg)
+    animation: animate 20s linear infinite
+
+
+@keyframes animate
+  from
+    background-position: 0
+
+  to
+    background-position: 0 450px
