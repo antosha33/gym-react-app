@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import AuthPage from './AuthPage';
 
 const Routes = ( {isAuthenticated}) => {
@@ -12,8 +12,12 @@ const Routes = ( {isAuthenticated}) => {
   }else{
     return(
       <Switch>
-      <Route to="/main"></Route>
-      <Route redirect="/"></Route>
+        <Route path="/peoples">
+          <h1>Peoples</h1>
+        </Route>
+        <Redirect to="/main">
+          <h1>Main</h1>
+        </Redirect>
       </Switch>
     )
   }

@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { User } = require('./models/User');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 
 const auth = Router();
 
@@ -60,6 +61,17 @@ auth.post('/login',
     if(!user){
       return res.status(400).json({message: 'Пользователь не найден'});
     }
+
+    const unhashPass = await bcrypt.compare(password, user.password);
+
+    if(!unhashPass){
+      return res.status(404).json({message: 'Неверные данные при входе'})
+    }
+
+    const token = jwt.sign({userId: user._id}, user.password, {expiresIn: '1h'});
+
+    return res.status(200).json({token, userId: user._id});
+
   } catch (e) {
     console.log(e);
     return res.status(500).json('something went wrong');

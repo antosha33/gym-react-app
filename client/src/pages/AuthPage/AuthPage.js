@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRequest } from '../../hooks/request.hook';
 import Loader from '../../components/Loader';
-import { emmiter } from '../../components/Notification'
+import { emmiter } from '../../components/Notification';
+import AuthContext from "../../context/auth.context";
 
 import './authPage.sass';
 
 const AuthPage = () => {
+
+  const auth = useContext(AuthContext);
 
   const [authData, setAuthData] = useState({
     login:'',
@@ -35,7 +38,7 @@ const AuthPage = () => {
     ev.preventDefault();
     try {
       const response = await request('/auth/login', 'POST', {...authData});
-      const data = await response.json();
+      auth.login(response.token, response.userId);
       
     } catch (error) {
       emmiter.emmit('notify', error.message);
