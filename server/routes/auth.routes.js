@@ -33,7 +33,7 @@ auth.post('/register',
 
      await newUser.save();
 
-      res.status(201).json({message: 'Пользователь зарегестрирован'});
+      res.status(201).json({message: 'Пользователь зарегестрирован! Можете войти'});
 
     } catch (e) {
       console.log(e);
@@ -45,7 +45,7 @@ auth.post('/register',
 
 auth.post('/login',
   async (req, res) => {
-
+    
   })
 
 module.exports = auth;

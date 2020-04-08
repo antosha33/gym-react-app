@@ -25,10 +25,8 @@ const AuthPage = () => {
     ev.preventDefault();
     try {
       const response = await request('/auth/register', 'POST', {...authData});
-      console.log(response);
       emmiter.emmit('notify', response.message);
     } catch (error) {
-      console.log(error);
       emmiter.emmit('notify', error.message);
     }
   }

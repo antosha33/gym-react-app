@@ -11,7 +11,7 @@ export default class evEmmiter {
   }
 
   emmit (event, args) {
-    if(Object.keys(this.events).length == 0) return;
+    if(Object.keys(this.events).length === 0) return;
     if(!this.events[event]) return;
     this.events[event].forEach((fn) => {
       fn.apply(null, [args]);
