@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import AuthPage from '../components/AuthPage';
+import AuthPage from './AuthPage';
 
 const Routes = ( {isAuthenticated}) => {
   if(!isAuthenticated){

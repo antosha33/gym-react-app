@@ -6,6 +6,8 @@ const [loading, setLoading] = useState(false);
 const [error, setError] = useState(true)
 
   const request = useCallback( async (url, method = 'GET', body, headers) => {
+    setLoading(true);
+    body = JSON.stringify(body);
     try {
       const response = await fetch(url, {
         method,
@@ -16,10 +18,10 @@ const [error, setError] = useState(true)
         body,
       } )
 
-      const data = await data.json();
+      const data = await response.json();
 
       if(!response.ok){
-        throw new Error(data.message)
+        throw new Error(data.message);
       }
    
       setLoading(false);
