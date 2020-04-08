@@ -44,8 +44,27 @@ auth.post('/register',
 
 
 auth.post('/login',
+  check('login').isLength({ min: 6 }),
+  check('password').isLength({ min: 6 }),
   async (req, res) => {
-    
+    try{ 
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+      return res.status(400).json({error: errors.array(), message: 'Некорректные данные при входе'});
+    }
+
+    const {login, password} = req.body;
+
+    const user = await User.findOne({login})
+
+    if(!user){
+      return res.status(400).json({message: 'Пользователь не найден'});
+    }
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json('something went wrong');
+  }
+
   })
 
 module.exports = auth;
