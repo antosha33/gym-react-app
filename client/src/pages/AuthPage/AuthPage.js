@@ -31,6 +31,18 @@ const AuthPage = () => {
     }
   }
 
+  const loginHandler = async(ev) => {
+    ev.preventDefault();
+    try {
+      const response = await request('/auth/login', 'POST', {...authData});
+      const data = await response.json();
+      
+    } catch (error) {
+      emmiter.emmit('notify', error.message);
+    }
+
+  }
+
   return (
 
     <form className="main-auth">
@@ -63,7 +75,7 @@ const AuthPage = () => {
       </div>
       <div className="auth-buttons">
         <button type="submit" onClick={registerHandler} className="btn btn-primary">Регистрация</button>
-        <button type="submit" className="btn btn-success">Войти</button>
+        <button type="submit" onClick={loginHandler} className="btn btn-success">Войти</button>
       </div>
     </form>
   )
