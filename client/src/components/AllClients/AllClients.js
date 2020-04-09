@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { useRequest } from '../../hooks/request.hook';
+import { useHistory } from 'react-router-dom';
 import AuthContext from '../../context/auth.context';
 
-const AllClients = ({updater}) => {
+const AllClients = ({ updater }) => {
   const [clients, setClients] = useState([]);
+  const history = useHistory()
   const { request } = useRequest();
   const { token } = useContext(AuthContext);
   const fetchedClients = useCallback(async () => {
@@ -30,7 +32,7 @@ const AllClients = ({updater}) => {
           {clients.map(it => {
             return (
               <div className="col-lg-3">
-                <div className="card text-white bg-primary mb-3" style={{ 'max-width': '20rem' }}>
+                <div className="card text-white bg-primary mb-3" onClick={() => history.push(`clients/${it._id}`)} style={{ 'max-width': '20rem' }}>
                   <div className="card-header"><div className="card-name"><h3>{it.name} {it.surname}</h3></div> <div className="card-logo"></div> </div>
                   <p className="card-text">Дата начала тренировок: {new Date(it.dateOfStart).toLocaleDateString()}</p>
                   <p className="card-text">Возраст: {it.age}</p>

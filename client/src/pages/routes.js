@@ -17,7 +17,7 @@ const Routes = ({ isAuthenticated }) => {
   } else {
     return (
       <Switch>
-        <Route path="/peoples">
+        <Route path="/clients/:code">
           <h1>Peoples</h1>
         </Route>
         <Route path="/main">
