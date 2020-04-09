@@ -2,7 +2,8 @@ const { Router } = require('express');
 const { User } = require('./models/User');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
 const auth = Router();
 
@@ -68,7 +69,7 @@ auth.post('/login',
         return res.status(404).json({ message: 'Неверные данные при входе' })
       }
 
-      const token = jwt.sign({ userId: user._id }, user.password, { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user._id }, config.get('jwtSecret'), { expiresIn: '1h' });
 
       return res.status(200).json({ token, userId: user._id });
 
