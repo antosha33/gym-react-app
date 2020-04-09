@@ -6,6 +6,7 @@ const app = express();
 
 app.use(express.json({extended: true}));
 app.use('/auth', require('./routes/auth.routes'));
+app.use('/clients', require('./routes/clients.routes'));
 
 mongoose.connect(config.get('mongoUri'),{
   useNewUrlParser: true,

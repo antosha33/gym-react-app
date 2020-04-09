@@ -1,4 +1,5 @@
 {
   "mongoUri": "mongodb+srv://brokkoly:brokkoly1122@cluster0-v46qi.gcp.mongodb.net/gym?retryWrites=true&w=majority",
-  "PORT": 5000
+  "PORT": 5000,
+  "jwtSecret": "brokkoly"
 }

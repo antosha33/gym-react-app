@@ -77,8 +77,8 @@ const AuthPage = () => {
         onChange={onChanheHandler}/>
       </div>
       <div className="auth-buttons">
-        <button type="submit" onClick={registerHandler} className="btn btn-primary">Регистрация</button>
-        <button type="submit" onClick={loginHandler} className="btn btn-success">Войти</button>
+        <button type="submit" onClick={registerHandler} className="btn btn-primary" disabled={loading}>Регистрация</button>
+        <button type="submit" onClick={loginHandler} className="btn btn-success" disabled={loading}>Войти</button>
       </div>
     </form>
   )
