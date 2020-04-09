@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink , useHistory} from 'react-router-dom';
 import AuthContext from '../../context/auth.context';
 
 import './navbar.sass';
@@ -16,8 +16,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <Router>
-        <div className='logo'><Link to={'/main'}>BROKKOLY</Link></div>
+        <div className='logo'><NavLink to="/main">BROKKOLY</NavLink></div>
         <div className="collapse navbar-collapse custom" id="navbarColor01">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
@@ -39,7 +38,6 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-      </Router>
     </nav>
   )
 }
