@@ -23,7 +23,6 @@ const Notification = () => {
 
     return(
     <>
-
       <div className = {classes}><span>{message}</span></div>
     </>
     )

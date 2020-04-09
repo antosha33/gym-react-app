@@ -1,11 +1,7 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import {useRequest} from './request.hook';
-import { set } from 'mongoose';
-
+import { useState, useCallback, useEffect } from 'react';
 
 
 const useAuth = () => {
-
 
   const [token, setToken] = useState(null);
   const [userId, setuserId] = useState(null);
@@ -28,8 +24,8 @@ const useAuth = () => {
       const {jwtToken, userId} = JSON.parse(localStorage.getItem('userData'));
       setToken(jwtToken);
       setuserId(userId);
-      setReady(true);
     }
+    setReady(true);
   }, [])
 
   return {token, login, logout, ready, userId }
