@@ -20,10 +20,10 @@ const Navbar = () => {
         <div className="collapse navbar-collapse custom" id="navbarColor01">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">Главная <span className="sr-only">(current)</span></a>
+              <NavLink to="/main" className="nav-link" >Главная <span className="sr-only">(current)</span></NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Features</a>
+            <NavLink to="/programs" className="nav-link" href="#">Программы</NavLink>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">Pricing</a>

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import AuthPage from './AuthPage';
-import useAuth from '../hooks/auth.hook';
-import Loader from '../components/Loader';
-import MainPage from './MainPage/MainPage';
+import MainPage from './MainPage';
+import ProgramsPage from './ProgramsPage';
 
 
 const Routes = ({ isAuthenticated }) => {
@@ -22,6 +21,9 @@ const Routes = ({ isAuthenticated }) => {
         </Route>
         <Route path="/main">
           <MainPage />
+        </Route>
+        <Route path="/programs">
+          <ProgramsPage />
         </Route>
         <Redirect to="/main" />
 
