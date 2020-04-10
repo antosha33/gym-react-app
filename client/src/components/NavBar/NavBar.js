@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, NavLink , useHistory} from 'react-router-dom';
+import { NavLink , useHistory} from 'react-router-dom';
 import AuthContext from '../../context/auth.context';
 
 import './navbar.sass';
@@ -24,12 +24,6 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
             <NavLink to="/programs" className="nav-link" href="#">Программы</NavLink>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Pricing</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">About</a>
             </li>
           </ul>
           <ul className="navbar-nav mr-auto">

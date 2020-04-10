@@ -60,7 +60,7 @@ const CreateClient = ({update}) => {
   if (showCreate) {
     return (
       <>
-        <button type="button" onClick={showHandler} class="btn btn-primary">Создать нового клиента</button>
+        <button type="button" onClick={showHandler} className="btn btn-primary">Создать нового клиента</button>
         <div className="jumbotron">
           <h3 className="display-5"> Новый клиент! </h3>
           <form className="createClient">

@@ -1,9 +1,6 @@
-import  { useState, useCallback, useContext} from 'react';
-import AuthContext from '../context/auth.context';
+import  { useState, useCallback} from 'react';
 
 export const useRequest = () => {
-
-const auth = useContext(AuthContext)
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState(true)
 
@@ -36,7 +33,6 @@ const [error, setError] = useState(true)
     } catch (error) {
       setError(error);
       setLoading(false);
-      // auth.logout()
       throw error;
     }
 

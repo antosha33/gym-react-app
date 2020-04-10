@@ -1,0 +1,51 @@
+.jumbotron.table-container
+  margin-top: 20px
+  padding: 10px 10px
+  h1
+    text-align: center
+    padding-bottom: 20px
+  .table
+    tr
+      display: flex
+      justify-content: space-between
+      td
+        display: flex
+        align-items: center
+        border-radius: 3px
+        p
+          margin: 0
+      td, th
+        padding: 4px 5px
+        transition: all .3s ease
+        width: 100%
+        font-size: 12px
+        &:nth-child(1)
+          flex-shrink: 2
+        &:nth-child(2)
+          flex-shrink: 3
+        &:nth-child(3)
+          flex-shrink: 4
+        input 
+          height: 25px
+          width: 100%
+          color: #fff
+          padding-left: 5px
+          font-size: 12px
+      &:nth-child(1)
+        margin-bottom: 5px
+        td
+          padding: 3px
+
+        input, .btn
+          border-radius: 5px
+          height: 35px
+    .form-control-plaintext
+      background-color: lighten(rgb(58,63,68), 10)
+    .btn
+      padding: 2px 8px
+      border: none
+      font-size: 14px
+      width: 100%
+
+.jumbotron.table-container.loader
+  height: 400px
