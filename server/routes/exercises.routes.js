@@ -3,9 +3,9 @@ const Complex = require('./models/Complex');
 const Exercise = require('./models/Exercise');
 const { auth } = require('../middlwares/auth.middlware');
 
-const programs = Router();
+const exercises = Router();
 
-programs.post('/exercise/create', auth, async (req, res) => {
+exercises.post('/exercise/create', auth, async (req, res) => {
   try {
     const { name, bodyPart } = req.body;
     let dataToStore;
@@ -31,7 +31,7 @@ programs.post('/exercise/create', auth, async (req, res) => {
 })
 
 
-programs.post('/exercise/delete', auth, async (req, res) => {
+exercises.post('/exercise/delete', auth, async (req, res) => {
   try {
     const { id } = req.body;
     if (id) {
@@ -48,7 +48,7 @@ programs.post('/exercise/delete', auth, async (req, res) => {
 
 })
 
-programs.get('/exercise', auth, async (req, res) => {
+exercises.get('/exercise', auth, async (req, res) => {
   try {
     const exercises = await Exercise.find({}).sort('name');
     return res.status(200).json(exercises);
@@ -60,4 +60,4 @@ programs.get('/exercise', auth, async (req, res) => {
 })
 
 
-module.exports = programs;
+module.exports = exercises;

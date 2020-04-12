@@ -7,7 +7,8 @@ const app = express();
 app.use(express.json({extended: true}));
 app.use('/auth', require('./routes/auth.routes'));
 app.use('/clients', require('./routes/clients.routes'));
-app.use('/programs', require('./routes/programs.routes'));
+app.use('/programs', require('./routes/exercises.routes'));
+app.use('/programs', require('./routes/complexes.routes'));
 
 mongoose.connect(config.get('mongoUri'),{
   useNewUrlParser: true,

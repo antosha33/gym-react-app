@@ -1,15 +1,16 @@
 const { Schema, model, Types } = require('mongoose');
 
 
-const partsScheme = new Schema({
+const exersisesScheme = new Schema({
   name: { type: Types.ObjectId, ref: 'Exrecise', required: true },
-  approachCuantity: Number,
+  approachCoantity: {type:Number, default: 4},
   repetitionsNumber: Number,
+  weight: Number,
 })
 
 const complexScheme = new Schema({
   name: { type: String, required: true, unique: true },
-  parts: [partsScheme],
+  exercises: [exersisesScheme],
   owner: { type: Types.ObjectId, ref: 'User', required: true }
 })
 

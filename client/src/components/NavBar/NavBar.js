@@ -23,7 +23,10 @@ const Navbar = () => {
               <NavLink to="/main" className="nav-link" >Главная <span className="sr-only">(current)</span></NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/programs" className="nav-link" href="#">Программы</NavLink>
+            <NavLink to="/programs" className="nav-link" >Упражнения</NavLink>
+            </li>
+            <li className="nav-item">
+            <NavLink to="/complexes" className="nav-link" >Программные комплексы</NavLink>
             </li>
           </ul>
           <ul className="navbar-nav mr-auto">

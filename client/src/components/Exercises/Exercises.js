@@ -69,35 +69,38 @@ const Exercises = () => {
   }
 
   return (
-    <div className="jumbotron table-container">
-      <h1 className="display-5">Менеджер упражнений</h1>
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Упражнение</th>
-            <th scope="col">Группа мышц</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="table-default">
-            <td><input type="text" name="name" value={inputValues.name} className="form-control-plaintext" onChange={onInputChangeHandler} /></td>
-            <td><input type="text" name="bodyPart" value={inputValues.bodyPart} className="form-control-plaintext" onChange={onInputChangeHandler} /></td>
-            <td><button type="button" onClick={onSubmitHandler} className="btn btn-success" >Добавить</button></td>
-          </tr>
-          {exercises.map((it) => {
-            return (
-              <tr className="table-active" key={it._id}>
-                <td><p>{it.name}</p></td>
-                <td><p>{it.bodyPart}</p></td>
-                <td><button type="button" className="btn btn-danger" onClick={onDeleteHandler} data-id={it._id}>Удалить</button> </td>
-              </tr>
-            )
-          })
-          }
-        </tbody>
-      </table>
-    </div >
+    <div className="row">
+      <div className="col-md-12"> <div className="jumbotron table-container">
+        <h1 className="display-5">Упражнения</h1>
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Упражнение</th>
+              <th scope="col">Группа мышц</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="table-default">
+              <td><input type="text" name="name" value={inputValues.name} className="form-control-plaintext" onChange={onInputChangeHandler} /></td>
+              <td><input type="text" name="bodyPart" value={inputValues.bodyPart} className="form-control-plaintext" onChange={onInputChangeHandler} /></td>
+              <td><button type="button" onClick={onSubmitHandler} className="btn btn-success" >Добавить</button></td>
+            </tr>
+            {exercises.map((it) => {
+              return (
+                <tr className="table-active" key={it._id}>
+                  <td><p>{it.name}</p></td>
+                  <td><p>{it.bodyPart}</p></td>
+                  <td><button type="button" className="btn btn-danger" onClick={onDeleteHandler} data-id={it._id}>Удалить</button> </td>
+                </tr>
+              )
+            })
+            }
+          </tbody>
+        </table>
+      </div >
+      </div>
+    </div>
   )
 }
 

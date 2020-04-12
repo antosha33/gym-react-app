@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import AuthPage from './AuthPage';
 import MainPage from './MainPage';
 import ProgramsPage from './ProgramsPage';
+import ComplexesPage from './ComplexesPage';
 
 
 const Routes = ({ isAuthenticated }) => {
@@ -24,6 +25,9 @@ const Routes = ({ isAuthenticated }) => {
         </Route>
         <Route path="/programs">
           <ProgramsPage />
+        </Route>
+        <Route path="/complexes">
+          <ComplexesPage />
         </Route>
         <Redirect to="/main" />
 

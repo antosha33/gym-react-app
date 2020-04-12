@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Exercises from '../../components/Exercises';
 
 import './exercisespage.sass'
 
 const ProgramsPage = () => {
+
+ const [block, setBlock] =  useState();
+
+
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-md-6"></div>
-        <div className="col-md-6">        <Exercises /></div>
-
-      </div>
+     <Exercises />
     </div>
 
   )
