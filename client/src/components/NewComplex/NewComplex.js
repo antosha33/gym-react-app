@@ -18,7 +18,7 @@ const initialExercise = {
   weight: '',
 }
 
-const NewComplex = () => {
+const NewComplex = ({getAllComplexes}) => {
 
 
   const [name, setName] = useState('Новый комплекс');
@@ -85,6 +85,7 @@ const NewComplex = () => {
       ev.target.reset();
       setName('Новый комплекс');
       setCountOfExercise(1);
+      getAllComplexes();
       emmiter.emmit('notify', response.message);
     } catch (error) {
       emmiter.emmit('notify', error.message);

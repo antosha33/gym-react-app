@@ -1,31 +1,52 @@
-.jumbotron.new-copmlex
-  padding-bottom: 10px
-  .card
-    padding: 10px 20px
-    .card-header
+.complexes-page
+  margin-top: 25px
+  .jumbotron.new-copmlex
+    padding: 5px 15px
+    h1
       text-align: center
-      padding: 6px 3px  
-    .btn
-      width: 100%
-      margin: auto  
-      margin-top: 15px
-  .exercise-manager
-    display: flex
-    justify-content: space-between
-    .form-group
-      width: 100%
-      padding: 0px 20px
-      &:nth-child(2), &:nth-child(3), &:nth-child(4)
-        flex-shrink: 2
+    .form-control
+      padding: 5px
+      height: 30px
+    .card
+      padding: 10px 20px
+      .card-header
+        text-align: center
+        padding: 3px 3px  
+        margin-bottom: 5px
+      .btn
+        width: 100%
+        margin: auto  
+        margin-top: 15px
+        padding: 5px
+    .exercise-manager
+      display: flex
+      justify-content: space-between
+      .form-group
+        width: 100%
+        padding: 0px 20px
+        &:nth-child(2), &:nth-child(3), &:nth-child(4)
+          flex-shrink: 2
+          input
+            padding: 0px 2px
+            font-size: 13px
+            text-align: center
         input
-          padding: 0px 2px
-          font-size: 13px
-          text-align: center
-      input
-        height: 50%
-      margin-bottom: 0
+          height: 50%
+        margin-bottom: 0
+    .btn
+      width: 50%
+      margin: auto
+      display: block
 
-  .btn
-    width: 50%
-    margin: auto
-    display: block
+  .list-group
+    li
+      &:nth-child(1)
+        background-color: #62c462
+        color: #fff
+        &:hover
+          background-image: linear-gradient(#379337, #3b9e3b 40%, #3ea63e)
+    .badge
+      padding: 4px
+      font-size: 10px
+      font-weight: normal
+

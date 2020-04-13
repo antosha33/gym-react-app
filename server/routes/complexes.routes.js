@@ -24,8 +24,30 @@ complexes.post('/complex/create', auth, async (req, res) => {
 
     await newComplex.save();
 
-    return res.status(200).json({message:'Комплекс успешно добавлен'})
+    return res.status(200).json({ message: 'Комплекс успешно добавлен' })
 
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json('something went wrong');
+  }
+
+})
+
+complexes.get('/complexes/', auth, async (req, res) => {
+  try {
+
+    let complexes = await Complex.find({ owner: req.userId }).sort('-_id');
+
+    complexes = complexes.map((it) => (
+      {
+        id: it._id,
+        name: it.name,
+        level: it.level
+      }
+    )
+    );
+
+    return res.status(200).json( complexes );
   } catch (error) {
     console.log(error);
     return res.status(500).json('something went wrong');

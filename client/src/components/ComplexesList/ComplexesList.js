@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
+import {useHistory } from 'react-router-dom';
 
-const ComplexesList = () => {
+import ComplexesListItem from '../ComplexesListItem';
+
+const ComplexesList = ({ getAllComplexes, items, onItemSelectHanlder, onShow }) => {
+
+  const history = useHistory();
+
+  useEffect(() => {
+    getAllComplexes()
+  }, [getAllComplexes])
+
   return (
     <ul className="list-group">
-      <li className="list-group-item d-flex justify-content-between align-items-center">
+      <li className="list-group-item d-flex justify-content-between align-items-center" onClick={()=>history.push('/complexes')}>
         Создать новый комплекс
-    <span className="badge badge-primary badge-pill">14</span>
-      </li>
-      <li className="list-group-item d-flex justify-content-between align-items-center">
-        Dapibus ac facilisis in
-    <span className="badge badge-primary badge-pill">2</span>
-      </li>
-      <li className="list-group-item d-flex justify-content-between align-items-center">
-        Morbi leo risus
-    <span className="badge badge-primary badge-pill">1</span>
-      </li>
+    </li>
+      {items.map((it) => {
+        return <ComplexesListItem name={it.name} level={it.level} id={it.id} onItemSelectHanlder={onItemSelectHanlder} />
+      })}
     </ul>
   )
 }

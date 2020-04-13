@@ -69,7 +69,9 @@ auth.post('/login',
         return res.status(404).json({ message: 'Неверные данные при входе' })
       }
 
-      const token = jwt.sign({ userId: user._id }, config.get('jwtSecret'), { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user._id }, config.get('jwtSecret')
+      // , { expiresIn: '1h' }
+      );
 
       return res.status(200).json({ token, userId: user._id });
 

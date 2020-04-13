@@ -26,8 +26,7 @@ const Routes = ({ isAuthenticated }) => {
         <Route path="/programs">
           <ProgramsPage />
         </Route>
-        <Route path="/complexes">
-          <ComplexesPage />
+        <Route path="/complexes/:id?" component={ComplexesPage}>
         </Route>
         <Redirect to="/main" />
 
