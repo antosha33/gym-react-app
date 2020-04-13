@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useRequest } from '../../hooks/request.hook';
 import AuthContext from '../../context/auth.context';
+import { emmiter } from '../Notification/Notification';
 import Select from 'react-select';
 
 
@@ -30,7 +31,6 @@ const NewComplex = () => {
 
   const { token } = useContext(AuthContext);
 
-
   useEffect(() => {
     (async () => {
       try {
@@ -45,15 +45,11 @@ const NewComplex = () => {
     })();
   }, [])
 
-  const onChangeNameHandler = (ev) => {
-    if (!ev.target.value) return setName('Новый комплекс')
-    if (ev.target.name == 'name') {
-      setName(ev.target.value);
-      setInputs({
-        ...inputs,
-        [ev.target.name]: ev.target.value
-      })
-    }
+  const onChangeHandler = (ev) => {
+    setInputs({
+      ...inputs,
+      [ev.target.name]: ev.target.value
+    })
   }
 
   const selectExerciseHandle = (ev) => {
@@ -77,18 +73,21 @@ const NewComplex = () => {
   }
 
   const onSubmitHandler = async (ev) => {
+    ev.persist();
     ev.preventDefault();
     onAddExercise(true);
-    // setInputs(initialInputs);
-    // setExercise(initialExercise);
-    // inputs.exercise = [];
-    // ev.target.reset();
-    // setName('Новый комплекс');
-    // setCountOfExercise(1);
+
     try {
       const response = await request('/programs/complex/create/', 'POST', inputs, { 'Authorization': `Bearer ${token}` });
+      setInputs(initialInputs);
+      setExercise(initialExercise);
+      inputs.exercise = [];
+      ev.target.reset();
+      setName('Новый комплекс');
+      setCountOfExercise(1);
+      emmiter.emmit('notify', response.message);
     } catch (error) {
-      console.log(error);
+      emmiter.emmit('notify', error.message);
     }
 
   }
@@ -100,28 +99,29 @@ const NewComplex = () => {
   }
 
   return (
-    <form class="jumbotron new-copmlex"
+    <form className="jumbotron new-copmlex"
       onSubmit={onSubmitHandler}
     >
 
-      <h1 class="display-3">{name}</h1>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Название комплекса</label>
+      <h1 className="display-3">{inputs.name || 'Новый комплекс'}</h1>
+      <div className="form-group">
+        <label htmlFor="exampleInputEmail1">Название комплекса</label>
         <input type="text"
-          class="form-control"
+          className="form-control"
           aria-describedby="emailHelp"
           placeholder="Введите название комплекса"
           name="name"
           value={inputs.name}
           required
-          onChange={onChangeNameHandler}
+          onChange={onChangeHandler}
         />
       </div>
-      <div class="form-group">
-        <label for="exampleSelect1">Выберите уровень</label>
-        <select class="form-control"
+      <div className="form-group">
+        <label htmlFor="exampleSelect1">Выберите уровень</label>
+        <select className="form-control"
           name='level'
-          onChange={onChangeNameHandler}
+          onChange={onChangeHandler}
+          value={inputs.level}
         >
           <option>Новичок</option>
           <option>Продолжающий</option>
@@ -129,16 +129,16 @@ const NewComplex = () => {
         </select>
       </div>
 
-      <div class="card  bg-primary mb-3">
-        <div class="card-header">УПРАЖНЕНИЯ В КОМПЛЕКСЕ</div>
+      <div className="card  bg-primary mb-3">
+        <div className="card-header">УПРАЖНЕНИЯ В КОМПЛЕКСЕ</div>
         {exercisesInComplex}
         <button type="button"
-          class="btn btn-secondary"
+          className="btn btn-secondary"
           onClick={() => onAddExercise()}
         >Добавить еще упражнение</button>
       </div>
       <button type="submit"
-        class="btn btn-success"
+        className="btn btn-success"
       >ДОБАВИТЬ КОМПЛЕКС</button>
     </form>
   )
@@ -153,26 +153,26 @@ const NewExerciseInComplex = ({ selectExerciseHandle, exerciseOptions }) => {
     <>
       <div className="exercise-manager">
         <div className="form-group">
-          <label for="exampleInputEmail1">Выберите Упражнение</label>
+          <label htmlFor="exampleInputEmail1">Выберите Упражнение</label>
           <Select options={exerciseOptions}
             onChange={selectExerciseHandle}
             isSearchable={true}
             placeholder={'Здесь можно воспользоваться поиском'}
           />
         </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Подходы</label>
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1">Подходы</label>
           <input type="text"
-            class="form-control"
+            className="form-control"
             name="approachCoantity"
             placeholder="4"
             onChange={selectExerciseHandle}
           />
         </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Повторения</label>
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1">Повторения</label>
           <input type="text"
-            class="form-control"
+            className="form-control"
             name="repetitionsNumber"
             placeholder="Повторения"
             required
@@ -180,10 +180,10 @@ const NewExerciseInComplex = ({ selectExerciseHandle, exerciseOptions }) => {
 
           />
         </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Вес</label>
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1">Вес</label>
           <input type="text"
-            class="form-control"
+            className="form-control"
             name="weight"
             placeholder="Вес"
             required

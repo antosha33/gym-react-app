@@ -10,8 +10,9 @@ const exersisesScheme = new Schema({
 
 const complexScheme = new Schema({
   name: { type: String, required: true, unique: true },
+  level:{type: String, required: true},
   exercises: [exersisesScheme],
   owner: { type: Types.ObjectId, ref: 'User', required: true }
 })
 
-module.exports.Complex = model('Complex', complexScheme);
+module.exports = model('Complex', complexScheme);
