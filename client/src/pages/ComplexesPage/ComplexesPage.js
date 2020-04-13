@@ -27,7 +27,6 @@ const ComplexesPage = ({ match }) => {
   }, [request])
 
   const onItemSelectHanlder = (id) => {
-    setShow(false);
     history.push(`/complexes/${id}`)
   }
 
