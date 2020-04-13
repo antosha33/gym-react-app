@@ -11,9 +11,7 @@ import ComplexDetail from '../../components/ComplexDetail';
 import './complexespage.sass'
 
 const ComplexesPage = ({ match }) => {
-  const { id } = match.params;
   const { request, loading } = useRequest();
-  const [show, setShow] = useState(true);
   const [items, setItems] = useState([]);
 
   const { token } = useContext(AuthContext);
