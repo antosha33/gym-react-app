@@ -131,7 +131,8 @@ const NewComplex = ({getAllComplexes}) => {
       </div>
 
       <div className="card  bg-primary mb-3">
-        <div className="card-header">УПРАЖНЕНИЯ В КОМПЛЕКСЕ</div>
+        <h4>УПРАЖНЕНИЯ В КОМПЛЕКСЕ</h4>
+        <br/>
         {exercisesInComplex}
         <button type="button"
           className="btn btn-secondary"

@@ -5,6 +5,4 @@ const exerciseScheme = new Schema({
   bodyPart: {type: String, default: 'ОБЩАЯ'}
 })
 
-
-
 module.exports = model('Exercise', exerciseScheme);

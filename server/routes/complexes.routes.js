@@ -55,4 +55,20 @@ complexes.get('/complexes/', auth, async (req, res) => {
 
 })
 
+
+complexes.get('/complexes/:id', auth, async (req, res) => {
+  try {
+
+    const {id} = req.params;
+
+    let complexe = await Complex.findOne({ _id: id }).populate('exercises.name');
+ 
+    return res.status(200).json( complexe );
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json('something went wrong');
+  }
+
+})
+
 module.exports = complexes;

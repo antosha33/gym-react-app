@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+require('./routes/models/Complex');
+require('./routes/models/Exercise');
+
 app.use(express.json({extended: true}));
 app.use('/auth', require('./routes/auth.routes'));
 app.use('/clients', require('./routes/clients.routes'));
