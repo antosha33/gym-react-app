@@ -1,26 +1,11 @@
-import React, { useEffect, useCallback, useState, useContext} from 'react';
+import React, { useEffect} from 'react';
 import {useHistory } from 'react-router-dom';
-import AuthContext from '../../context/auth.context';
-import { useRequest } from '../../hooks/request.hook';
-import { emmiter } from '../../components/Notification/Notification';
+
 
 import ComplexesListItem from '../ComplexesListItem';
 import Loader from '../Loader'
 
-const ComplexesList = ({onItemSelectHanlder}) => {
-
-  const { request, loading } = useRequest();
-  const { token } = useContext(AuthContext);
-  const [items, setItems] = useState([]);
-
-  const getAllComplexes = useCallback(async () => {
-    try {
-      const response = await request('/programs/complexes/', 'GET', null, { 'Authorization': `Bearer ${token}` });
-      setItems(response);
-    } catch (error) {
-      emmiter.emmit('notyfi', error.message);
-    }
-  }, [request])
+const ComplexesList = ({onItemSelectHanlder, items, getAllComplexes, loading}) => {
   
   const history = useHistory();
 

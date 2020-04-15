@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const ComplexesListItem = ({ name, level, id, onItemSelectHanlder }) => {
+
 
   let span;
 
@@ -15,8 +16,23 @@ const ComplexesListItem = ({ name, level, id, onItemSelectHanlder }) => {
       span = <span class="badge badge-success">{level}</span>
   }
 
+  const onClickHandler = (ev) =>{
+    onItemSelectHanlder(id);
+    const li = document.querySelectorAll('.list-group-item.d-flex.justify-content-between');
+    const arrLi = Array.prototype.slice.apply(li);
+    arrLi.forEach((item) => {
+      if(ev.target === item){
+        item.classList.add('active');
+      }else{
+        item.classList.remove('active');
+      }
+    })
+  }
+
   return (
-    <li className="list-group-item d-flex justify-content-between align-items-center" onClick={() => onItemSelectHanlder(id)}>
+    <li className='list-group-item d-flex justify-content-between align-items-center list-group-item-action'
+     onClick={onClickHandler}
+     >
       {name}
       {span}
     </li>

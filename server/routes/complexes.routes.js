@@ -61,7 +61,7 @@ complexes.get('/complexes/:id', auth, async (req, res) => {
 
     const {id} = req.params;
 
-    let complexe = await Complex.findOne({ _id: id }).populate('exercises.name');
+    let complexe = await Complex.findOne({ _id: id }).populate({ path: 'exercises.name', select: 'name bodyPart' });
  
     return res.status(200).json( complexe );
   } catch (error) {
