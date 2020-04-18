@@ -71,4 +71,20 @@ complexes.get('/complexes/:id', auth, async (req, res) => {
 
 })
 
+complexes.post('/complexes/delete/', auth, async (req, res) => {
+  try {
+
+    const {id} = req.body;
+
+    await Complex.findOneAndDelete({ _id: id });
+ 
+    return res.status(200).json( {message:'Комплекс удален'} );
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json('something went wrong');
+  }
+
+})
+
+
 module.exports = complexes;

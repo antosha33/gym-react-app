@@ -57,7 +57,7 @@ const ComplexesPage = () => {
           <Route path='/complexes/:id'
                  render={
                    ({match}) => {
-                    return <ComplexDetail id={match.params.id} />
+                    return <ComplexDetail id={match.params.id} getAllComplexes={getAllComplexes} />
                   }
                 }
           />

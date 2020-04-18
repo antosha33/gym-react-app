@@ -1,15 +1,21 @@
-import React, { useEffect, useCallback, token, useState, useContext } from 'react';
+import React, { useEffect, useCallback, useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import AuthContext from '../../context/auth.context';
 import { useRequest } from '../../hooks/request.hook';
 import Loader from '../../components/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
-const ComplexDetail = ({ id }) => {
+const ComplexDetail = ({ id, getAllComplexes }) => {
 
   const [data, setData] = useState(null);
 
   const { request, loading } = useRequest();
 
   const { token } = useContext(AuthContext);
+
+  const history = useHistory()
+
 
   const getComplexItemDetail = useCallback(async () => {
     try {
@@ -19,6 +25,18 @@ const ComplexDetail = ({ id }) => {
       console.log('er', error);
     }
   }, [token, request, id]);
+
+
+  const deleteComplex = async () => {
+    try {
+      await request(`/programs/complexes/delete`, 'POST', { id }, { 'Authorization': `Bearer ${token}` });
+      history.push('/complexes');
+      getAllComplexes();  
+    } catch (error) {
+      console.log('er', error);
+    }
+  }
+
 
   useEffect(() => {
     getComplexItemDetail();
@@ -30,8 +48,11 @@ const ComplexDetail = ({ id }) => {
 
   return (
 
-    <div class="jumbotron item-copmlex">
-      <h3 class="display-3">{data && data.name}</h3>
+    <div className="jumbotron item-copmlex">
+      <div className="top-panel">
+        <h3 className="display-3">{data && data.name}</h3>
+        <div className="del-button" onClick={deleteComplex}><FontAwesomeIcon icon={faTrashAlt} size="2x" className="highlight" ></FontAwesomeIcon></div>
+      </div>
       <table className="table table-hover">
         <thead>
           <tr>
@@ -45,7 +66,7 @@ const ComplexDetail = ({ id }) => {
         <tbody>
           {data && data.exercises.map((it, index) => {
             return (<tr className="table-secondary">
-              <td>{index+1}. {it.name.name}</td>
+              <td>{index + 1}. {it.name.name}</td>
               <td>{it.name.bodyPart}</td>
               <td>{it.approachCoantity}</td>
               <td>{it.repetitionsNumber}</td>
