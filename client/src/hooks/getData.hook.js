@@ -11,12 +11,19 @@ export const useGetData = () => {
   const getAllComplexes = useCallback(async () => {
     try {
       return request('/programs/complexes/', 'GET', null, { 'Authorization': `Bearer ${token}` });
-      // setItems(response);
     } catch (error) {
-      // emmiter.emmit('notyfi', error.message);
+      throw new Error(error);
     }
   }, [request, token]);
 
-  return {getAllComplexes, loading};
+  const getAllExercises = useCallback(async () => {
+    try {
+      return request('/programs/exercise/', 'GET', null, { 'Authorization': `Bearer ${token}` });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }, [request, token]);
+
+  return {getAllComplexes, getAllExercises, loading};
 }
 

@@ -36,16 +36,7 @@ complexes.post('/complex/create', auth, async (req, res) => {
 complexes.get('/complexes/', auth, async (req, res) => {
   try {
 
-    let complexes = await Complex.find({ owner: req.userId }).sort('-_id');
-
-    complexes = complexes.map((it) => (
-      {
-        id: it._id,
-        name: it.name,
-        level: it.level
-      }
-    )
-    );
+    let complexes = await Complex.find({ owner: req.userId }).sort('-_id').populate('exercises.name');
 
     return res.status(200).json( complexes );
   } catch (error) {

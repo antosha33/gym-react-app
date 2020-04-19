@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react';
+import React, { useState,  useEffect, useCallback, useContext } from 'react';
+import { useGetData } from '../../hooks/getData.hook';
 import { useRequest } from '../../hooks/request.hook';
 import AuthContext from '../../context/auth.context';
 import { emmiter } from '../Notification/Notification';
@@ -6,9 +7,12 @@ import Loader from '../../components/Loader';
 
 const Exercises = () => {
 
-  const { request, loading } = useRequest();
+  const {request} = useRequest();
 
-  const { token } = useContext(AuthContext);
+  const {token}= useContext (AuthContext) 
+  
+  const { getAllExercises : getExercises, loading } = useGetData();
+
 
   const [inputValues, setInputValues] = useState({
     name: '',
@@ -52,9 +56,9 @@ const Exercises = () => {
   }
 
   const getAllExercises = useCallback(async () => {
-    const response = await request('/programs/exercise/', 'GET', null, { 'Authorization': `Bearer ${token}` });
+    const response = await getExercises();
     setExercises(response);
-  }, [token, request])
+  }, [getExercises])
 
   useEffect(() => {
     getAllExercises()
