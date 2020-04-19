@@ -7,7 +7,6 @@ const exersisesScheme = new Schema({
   name: { type: Types.ObjectId, ref: Exercise , required: true },
   approachCoantity: {type:Number, default: 4},
   repetitionsNumber: Number,
-  weight: Number,
 })
 
 const complexScheme = new Schema({

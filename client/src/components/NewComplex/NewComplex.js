@@ -15,10 +15,9 @@ const initialExercise = {
   name: '',
   approachCoantity: '4',
   repetitionsNumber: '',
-  weight: '',
 }
 
-const NewComplex = ({getAllComplexes}) => {
+const NewComplex = ({ getAllComplexes }) => {
 
 
   const [name, setName] = useState('Новый комплекс');
@@ -79,9 +78,9 @@ const NewComplex = ({getAllComplexes}) => {
 
     try {
       const response = await request('/programs/complex/create/', 'POST', inputs, { 'Authorization': `Bearer ${token}` });
+      initialInputs.exercise = [];
       setInputs(initialInputs);
       setExercise(initialExercise);
-      inputs.exercise = [];
       ev.target.reset();
       setName('Новый комплекс');
       setCountOfExercise(1);
@@ -132,7 +131,7 @@ const NewComplex = ({getAllComplexes}) => {
 
       <div className="card  bg-primary mb-3">
         <h4>УПРАЖНЕНИЯ В КОМПЛЕКСЕ</h4>
-        <br/>
+        <br />
         {exercisesInComplex}
         <button type="button"
           className="btn btn-secondary"
@@ -180,16 +179,6 @@ const NewExerciseInComplex = ({ selectExerciseHandle, exerciseOptions }) => {
             required
             onChange={selectExerciseHandle}
 
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Вес</label>
-          <input type="text"
-            className="form-control"
-            name="weight"
-            placeholder="Вес"
-            required
-            onChange={selectExerciseHandle}
           />
         </div>
       </div>

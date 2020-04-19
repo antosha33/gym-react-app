@@ -33,5 +33,15 @@ clients.get('/', auth, async (req, res) => {
 
 })
 
+clients.get('/:code', auth, async (req, res) => {
+
+  // try {
+  //   const clients = await Client.find({owner: req.userId});
+  //  return res.status(200).json(clients);
+  // } catch (error) {
+  //   return res.status(500).json('something went wrong');
+  // }
+})
+
 
 module.exports = clients;

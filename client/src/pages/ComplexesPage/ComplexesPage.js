@@ -1,7 +1,6 @@
-import React,{useState, useCallback, useContext } from 'react';
+import React,{useState, useCallback} from 'react';
 import {Route, useHistory } from 'react-router-dom';
-import { useRequest } from '../../hooks/request.hook';
-import AuthContext from '../../context/auth.context';
+import { useGetData } from '../../hooks/getData.hook';
 import { emmiter } from '../../components/Notification/Notification';
 
 import ComplexesList from '../../components/ComplexesList';
@@ -15,24 +14,23 @@ const ComplexesPage = () => {
 
   const history = useHistory();
 
-  const { request, loading } = useRequest();
-  const { token } = useContext(AuthContext);
   const [items, setItems] = useState([]);
+
+  const { getAllComplexes : getComplexes, loading } = useGetData();
 
   const getAllComplexes = useCallback(async () => {
     try {
-      const response = await request('/programs/complexes/', 'GET', null, { 'Authorization': `Bearer ${token}` });
+      const response = await getComplexes();
       setItems(response);
     } catch (error) {
       emmiter.emmit('notyfi', error.message);
-    }
-  }, [request])
-
+    } 
+  }, [getComplexes]);
+  
 
   const onItemSelectHanlder = (id) => {
     history.push(`/complexes/${id}`)
   }
-
 
   return (
     <div className="container-fluid complexes-page">

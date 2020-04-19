@@ -60,7 +60,6 @@ const ComplexDetail = ({ id, getAllComplexes }) => {
             <th scope="col">Группа мышц</th>
             <th scope="col">Подходы</th>
             <th scope="col">Повторения</th>
-            <th scope="col">Вес</th>
           </tr>
         </thead>
         <tbody>
@@ -70,7 +69,6 @@ const ComplexDetail = ({ id, getAllComplexes }) => {
               <td>{it.name.bodyPart}</td>
               <td>{it.approachCoantity}</td>
               <td>{it.repetitionsNumber}</td>
-              <td>{it.weight}</td>
             </tr>)
           })}
 

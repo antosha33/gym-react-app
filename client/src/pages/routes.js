@@ -4,6 +4,7 @@ import AuthPage from './AuthPage';
 import MainPage from './MainPage';
 import ProgramsPage from './ProgramsPage';
 import ComplexesPage from './ComplexesPage';
+import Workouts from '../components/Workouts';
 
 
 const Routes = ({ isAuthenticated }) => {
@@ -17,8 +18,7 @@ const Routes = ({ isAuthenticated }) => {
   } else {
     return (
       <Switch>
-        <Route path="/clients/:code">
-          <h1>Peoples</h1>
+        <Route path="/clients/:code?" component={Workouts}>
         </Route>
         <Route path="/main">
           <MainPage />
