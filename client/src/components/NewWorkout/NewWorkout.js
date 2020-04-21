@@ -97,14 +97,10 @@ const NewWorkout = () => {
   }
 
 
-  const selectOptions = isExercises ?
+  const selectOptions = 
     workoutComplexesItems.map((it) => {
       return { value: it._id, label: it.name };
     })
-    : workoutExercisesItems.map((it) => {
-      return { value: it._id, label: it.name };
-    });
-
 
 
   return (
@@ -137,7 +133,7 @@ const NewWorkout = () => {
               placeholder={'Выберите комплекс'}
             />}
             {isExercises && <WorkoutComplex items={toTableItems} onWeightChangeHandler={onWeightChangeHandler} exerciseWeight={exerciseWeight} />}
-            {!isExercises && <WorkoutExercise items={toTableItems} onWeightChangeHandler={onWeightChangeHandler} exerciseWeight={exerciseWeight} />}
+            {!isExercises && <WorkoutExercise workoutExercisesItems={workoutExercisesItems} items={toTableItems} onWeightChangeHandler={onWeightChangeHandler} exerciseWeight={exerciseWeight} />}
           </div>
           <button type="button" class="btn btn-success" onClick={onSubmitHandler}>Отправить</button>
         </div>
