@@ -1,5 +1,5 @@
 .jumbotron.new-workout
-  width: 500px
+  width: 100%
   margin-top: 20px
   padding: 5px 15px 
   .top-newworkout
@@ -11,13 +11,29 @@
   .form-group
     display: flex
     justify-content: space-around
-    border: 1px solid #fff
-    padding: 15px 0px
+    padding: 5px 0px
     .form-check
+      border: 1px solid #fff
+      border-radius: 2px
       font-size: 18px
+      display: flex
+      align-items: center
+      padding: 0
+      input
+        margin-top: 0
+        position: relative
+        display: none
+        &:checked + label
+          background-color: #62c462
+      label 
+        padding: 10px 25px
+        color: #fff
   .calendar-wrapper   
+    width: 50%
+    margin: auto
     overflow: hidden 
     min-height: 5px
+    margin-bottom: 7px
     .react-calendar
       padding: 5px
       display: none
@@ -60,3 +76,27 @@
       display: block
     .react-calendar.show.animate
       top: 0
+  .jumbotron.workout-complex
+    margin-top: 5px
+    padding: 5px 15px
+    background-color: lighten(#1c1e22, 20)
+    .top-panel
+      padding: 2px 0px
+      display: flex
+      justify-content: space-between
+      align-items: center
+      font-size: 25px
+      .complex-name
+        font-weight: bold
+        margin-right: 25px
+      .badge
+        font-size: 10px
+        display: block
+        height: 18px
+    table
+      th, td
+        padding: 3px 0px
+        font-size: 12px
+        text-align: center
+      th 
+        padding: 6px 0px

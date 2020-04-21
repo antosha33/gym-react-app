@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons'
 import { useGetData } from '../../hooks/getData.hook';
+import { getFullDate } from '../../helpers/getFullDate';
 
 import Calendar from 'react-calendar';
 import Select from 'react-select';
 import WorkoutComplex from './WorkoutComplex';
+import WorkoutExercise from './WorkoutExercise';
 
 import './newworkout.sass';
 
@@ -21,6 +23,14 @@ const NewWorkout = () => {
   const [workoutExercisesItems, setWorkoutExercisesItems] = useState([]);
   const [toTableItems, setToTableItems] = useState(null);
   const [isExercises, setIsExercises] = useState(true);
+  const [exerciseWeight, setEcerciseWeight] = useState({});
+
+  const onWeightChangeHandler = (id) => (ev) => {
+    setEcerciseWeight({
+      ...exerciseWeight,
+      [id]: ev.target.value
+    })
+  }
 
   useEffect(() => {
     (async function () {
@@ -55,31 +65,45 @@ const NewWorkout = () => {
   }
 
 
-  const getFullDate = (date) => {
-    let log = '';
-    log = date.getDate() < 10 ? log + `0${date.getDate()}` : log + `${date.getDate()}`;
-    log = date.getMonth() < 10 ? log + `.0${date.getMonth() + 1}` : log + `.${date.getMonth() + 1}`;
-    log = log + `.${date.getFullYear() % 100}`;
-    return log;
-  }
-
   const onDateChange = (selectDate) => {
     setDate(selectDate);
   }
 
-  const onChangeHandler = (ev)=> {
-    const items = workoutComplexesItems.filter((it)=> it._id === ev.value);
+  const onSelectChangeHandler = (ev) => {
+    setEcerciseWeight({});
+    const items = workoutComplexesItems.filter((it) => it._id === ev.value);
     setToTableItems(...items);
   }
 
+  const onSubmitHandler = () => {
 
-  const selectOptions = isExercises ? 
-                  workoutComplexesItems.map((it) => {
-                  return { value: it._id, label: it.name };
-                })      
-              :   workoutExercisesItems.map((it) => {
-                  return { value: it._id, label: it.name };
-                })  ;
+    console.log(exerciseWeight);
+    console.log(toTableItems);
+
+    const newComplex = {
+      date: date,
+      name: toTableItems.name,
+      level: toTableItems.level,
+      exercises: toTableItems.exercises.map((it) => {
+        return {
+          id: it.name._id,
+          approachCoantity: it.approachCoantity,
+          repetitionsNumber: it.repetitionsNumber,
+          weight: exerciseWeight[it.name._id]
+        }
+      })
+    }
+    console.log(newComplex);
+  }
+
+
+  const selectOptions = isExercises ?
+    workoutComplexesItems.map((it) => {
+      return { value: it._id, label: it.name };
+    })
+    : workoutExercisesItems.map((it) => {
+      return { value: it._id, label: it.name };
+    });
 
 
 
@@ -98,24 +122,24 @@ const NewWorkout = () => {
             </div>
             <div class="form-group">
               <div class="form-check">
-                <input type="radio" class="form-check-input" id="complexes" value="complexes" onClick={onRadioClickHandler} checked={isExercises} />
+                <input type="radio" class="form-check-input" id="complexes" value="complexes" onClick={onRadioClickHandler} checked={isExercises} readOnly />
                 <label class="form-check-label" htmlFor="complexes">Комплексы</label>
 
               </div>
               <div class="form-check">
-
-                <input type="radio" class="form-check-input" id="exercises" value="exercises" onClick={onRadioClickHandler} checked={!isExercises} />
+                <input type="radio" class="form-check-input" id="exercises" value="exercises" onClick={onRadioClickHandler} checked={!isExercises} readOnly />
                 <label class="form-check-label" htmlFor="exercises">Упражнения</label>
               </div>
-
             </div>
-            <Select options={selectOptions}
+            {isExercises && <Select options={selectOptions}
               isSearchable={true}
-              onChange = {onChangeHandler}
-              placeholder={'Здесь можно воспользоваться поиском'}
-            />
-            {isExercises && <WorkoutComplex items={toTableItems}/>}
+              onChange={onSelectChangeHandler}
+              placeholder={'Выберите комплекс'}
+            />}
+            {isExercises && <WorkoutComplex items={toTableItems} onWeightChangeHandler={onWeightChangeHandler} exerciseWeight={exerciseWeight} />}
+            {!isExercises && <WorkoutExercise items={toTableItems} onWeightChangeHandler={onWeightChangeHandler} exerciseWeight={exerciseWeight} />}
           </div>
+          <button type="button" class="btn btn-success" onClick={onSubmitHandler}>Отправить</button>
         </div>
       </div>
     </>

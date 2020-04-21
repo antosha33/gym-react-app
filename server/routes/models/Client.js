@@ -8,7 +8,7 @@ const clientScheme = new Schema({
   dateOfStart: { type: Date, default: Date.now, required: true },
   aim: { type: String },
   description: { type: String },
-  complexes: { type: Types.ObjectId, ref: 'Complex' },
+  workout: { type: Types.ObjectId, ref: 'Workout' },
   owner: {type: Types.ObjectId, ref: 'User', required: true}
 })
 

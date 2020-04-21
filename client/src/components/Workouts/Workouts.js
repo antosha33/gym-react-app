@@ -41,9 +41,9 @@ const Workouts = ({ match }) => {
   return (
     <div className='container'>
       <div className='row'>
-        <div className='col-md-7'>
-          </div>
         <div className='col-md-5'>
+          </div>
+        <div className='col-md-7'>
         <NewWorkout />
           </div>
 
