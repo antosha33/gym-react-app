@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import ExerciseStateContext from '../../../context/exerciseState.context'
 
-const WorkoutComplex = ({ items, onWeightChangeHandler, exerciseWeight }) => {
+const WorkoutComplex = ({onWeightChangeHandler, exerciseWeight }) => {
+
+  const {toTableItems : items} = useContext(ExerciseStateContext);
 
   if (!items) {
     return null

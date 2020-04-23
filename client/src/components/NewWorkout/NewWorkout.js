@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons'
 import { useGetData } from '../../hooks/getData.hook';
 import { getFullDate } from '../../helpers/getFullDate';
+import ExerciseStateContext from '../../context/exerciseState.context';
 
 import Calendar from 'react-calendar';
 import Select from 'react-select';
@@ -69,10 +70,17 @@ const NewWorkout = () => {
     setDate(selectDate);
   }
 
-  const onSelectChangeHandler = (ev) => {
+  const onSelectComplexChangeHandler = (ev) => {
     setEcerciseWeight({});
     const items = workoutComplexesItems.filter((it) => it._id === ev.value);
     setToTableItems(...items);
+  }
+
+  const onSelectExerciseChangeHandler = (ev) => {
+    console.log('3424')
+    // setEcerciseWeight({});
+    // const items = workoutComplexesItems.filter((it) => it._id === ev.value);
+    // setToTableItems(...items);
   }
 
   const onSubmitHandler = () => {
@@ -97,7 +105,7 @@ const NewWorkout = () => {
   }
 
 
-  const selectOptions = 
+  const selectOptions =
     workoutComplexesItems.map((it) => {
       return { value: it._id, label: it.name };
     })
@@ -129,11 +137,13 @@ const NewWorkout = () => {
             </div>
             {isExercises && <Select options={selectOptions}
               isSearchable={true}
-              onChange={onSelectChangeHandler}
+              onChange={onSelectComplexChangeHandler}
               placeholder={'Выберите комплекс'}
             />}
-            {isExercises && <WorkoutComplex items={toTableItems} onWeightChangeHandler={onWeightChangeHandler} exerciseWeight={exerciseWeight} />}
-            {!isExercises && <WorkoutExercise workoutExercisesItems={workoutExercisesItems} items={toTableItems} onWeightChangeHandler={onWeightChangeHandler} exerciseWeight={exerciseWeight} />}
+            <ExerciseStateContext.Provider value = {{toTableItems, onSelectExerciseChangeHandler}}>
+              {isExercises && <WorkoutComplex onWeightChangeHandler={onWeightChangeHandler} exerciseWeight={exerciseWeight} />}
+              {!isExercises && <WorkoutExercise workoutExercisesItems={workoutExercisesItems} items={toTableItems} onWeightChangeHandler={onWeightChangeHandler} exerciseWeight={exerciseWeight} />}
+            </ExerciseStateContext.Provider>
           </div>
           <button type="button" class="btn btn-success" onClick={onSubmitHandler}>Отправить</button>
         </div>
