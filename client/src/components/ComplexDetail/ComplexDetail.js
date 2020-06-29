@@ -67,7 +67,7 @@ const ComplexDetail = ({ id, getAllComplexes }) => {
             return (<tr className="table-secondary">
               <td>{index + 1}. {it.name.name}</td>
               <td>{it.name.bodyPart}</td>
-              <td>{it.approachCoantity}</td>
+              <td>{it.approachQuantity}</td>
               <td>{it.repetitionsNumber}</td>
             </tr>)
           })}

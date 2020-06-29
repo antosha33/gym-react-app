@@ -7,13 +7,13 @@ import NewWorkout from '../NewWorkout';
 
 const Workouts = ({ match }) => {
 
-  const [isUpdate, setIsUpdate] = useState(false);
+   const [isUpdate, setIsUpdate] = useState(false);
 
   const updateHandler = () => {
     setIsUpdate(!isUpdate);
   }
 
-  const id = match.code;
+  const id = match.params.code;
 
   const { token } = useContext(AuthContext);
 

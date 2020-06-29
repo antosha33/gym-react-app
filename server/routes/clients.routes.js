@@ -34,13 +34,13 @@ clients.get('/', auth, async (req, res) => {
 })
 
 clients.get('/:code', auth, async (req, res) => {
-
-  // try {
+  try {
+    console.log(req.params.code)
   //   const clients = await Client.find({owner: req.userId});
   //  return res.status(200).json(clients);
-  // } catch (error) {
-  //   return res.status(500).json('something went wrong');
-  // }
+  } catch (error) {
+    return res.status(500).json('something went wrong');
+  }
 })
 
 

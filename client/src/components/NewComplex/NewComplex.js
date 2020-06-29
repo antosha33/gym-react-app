@@ -13,7 +13,7 @@ const initialInputs = {
 
 const initialExercise = {
   name: '',
-  approachCoantity: '4',
+  approachQuantity: '4',
   repetitionsNumber: '',
 }
 
@@ -165,7 +165,7 @@ const NewExerciseInComplex = ({ selectExerciseHandle, exerciseOptions }) => {
           <label htmlFor="exampleInputEmail1">Подходы</label>
           <input type="text"
             className="form-control"
-            name="approachCoantity"
+            name="approachQuantity"
             placeholder="4"
             onChange={selectExerciseHandle}
           />

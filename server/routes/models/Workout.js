@@ -1,8 +1,8 @@
 const { Schema, Types, model } = require('mongoose');
 
 const workoutExercises = new Schema({
-  exercises: { type: Types.ObjectId, ref: 'Exercise' },
-  approachCoantity: Number,
+  exercise: { type: Types.ObjectId, ref: 'Exercise' },
+  approachQuantity: Number,
   repetitionsNumber: Number,
   weight: Number,
 })

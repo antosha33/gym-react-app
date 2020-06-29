@@ -76,6 +76,58 @@
       display: block
     .react-calendar.show.animate
       top: 0
+  .jumbotron.workout-exercises
+    margin-top: 5px
+    padding: 5px 15px
+    background-color: lighten(#1c1e22, 20)
+    .top-panel
+      padding: 2px 0px
+      display: flex
+      justify-content: space-between
+      align-items: center
+      font-size: 25px
+      .complex-name
+        font-weight: bold
+        margin-right: 25px
+      .badge
+        font-size: 10px
+        display: block
+        height: 18px
+    table
+      th, td
+        padding: 3px 0px
+        font-size: 12px
+        text-align: center
+      th 
+        padding: 6px 0px
+      thead
+        tr
+          display: flex
+          height: 100%    
+        th        
+          width: 65%
+          flex-shrink: 0
+          &:not(:first-child)
+            width: 65%
+            flex-shrink: 1
+      tbody
+        tr
+          padding: 0px 5px
+          display: flex
+          height: 100%
+          th        
+            width: 65%
+            flex-shrink: 0
+          td
+            padding: 6px 0px
+            input
+              border-radius: 2px
+              border: none
+              height: 100%
+              width: 65%
+              text-align: center
+              font-size: 16px
+
   .jumbotron.workout-complex
     margin-top: 5px
     padding: 5px 15px

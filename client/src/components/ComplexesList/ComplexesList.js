@@ -23,7 +23,7 @@ const ComplexesList = ({onItemSelectHanlder, items, getAllComplexes, loading}) =
         Создать новый комплекс
     </li>
       {items.map((it) => {
-        return <ComplexesListItem name={it.name} level={it.level} id={it.id} onItemSelectHanlder={onItemSelectHanlder} />
+        return <ComplexesListItem name={it.name} level={it.level} id={it._id} onItemSelectHanlder={onItemSelectHanlder} />
       })}
     </ul>
   )

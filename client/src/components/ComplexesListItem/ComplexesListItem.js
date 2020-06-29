@@ -7,13 +7,13 @@ const ComplexesListItem = ({ name, level, id, onItemSelectHanlder }) => {
 
   switch (level) {
     case 'Новичок':
-      span = <span class="badge badge-danger">{level}</span>
+      span = <span className="badge badge-danger">{level}</span>
       break;
     case 'Продолжающий':
-      span = <span class="badge badge-warning">{level}</span>
+      span = <span className="badge badge-warning">{level}</span>
       break;
     default:
-      span = <span class="badge badge-success">{level}</span>
+      span = <span className="badge badge-success">{level}</span>
   }
 
   const onClickHandler = (ev) =>{

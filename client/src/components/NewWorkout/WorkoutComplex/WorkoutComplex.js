@@ -11,12 +11,12 @@ const WorkoutComplex = ({onWeightChangeHandler, exerciseWeight }) => {
 
   return (
 
-    <div class="jumbotron workout-complex">
+    <div className="jumbotron workout-complex">
       <div className="top-panel">
         <span className="complex-name">{items.name}</span>
-        <span class="badge badge-pill badge-dark">{items.level}</span>
+        <span className="badge badge-pill badge-dark">{items.level}</span>
       </div>
-      <table class="table table-hover">
+      <table className="table table-hover">
         <thead>
           <tr>
             <th scope="col">Упражнение</th>
@@ -28,9 +28,9 @@ const WorkoutComplex = ({onWeightChangeHandler, exerciseWeight }) => {
         <tbody>
           {items.exercises.map((it) => {
             return (
-              <tr class="table-primary">
+              <tr className="table-primary">
                 <th scope="row" >{it.name.name}</th>
-                <td>{it.approachCoantity}</td>
+                <td>{it.approachQuantity}</td>
                 <td>{it.repetitionsNumber}</td>
                 <td><input name="weight" onChange={onWeightChangeHandler(it.name._id)} value={exerciseWeight[it.name._id] || ''} /></td>
               </tr>

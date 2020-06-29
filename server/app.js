@@ -12,6 +12,7 @@ app.use('/auth', require('./routes/auth.routes'));
 app.use('/clients', require('./routes/clients.routes'));
 app.use('/programs', require('./routes/exercises.routes'));
 app.use('/programs', require('./routes/complexes.routes'));
+app.use('/workout', require('./routes/workouts.route'));
 
 mongoose.connect(config.get('mongoUri'),{
   useNewUrlParser: true,
