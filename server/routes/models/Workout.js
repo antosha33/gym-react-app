@@ -7,11 +7,16 @@ const workoutExercises = new Schema({
   weight: Number,
 })
 
+const workoutComplex = new Schema({
+  name: String,
+  level: String,
+  exercises: [workoutExercises],
+})
 
 const workoutScheme = new Schema({
   date: { type: Date, default: Date.now, required: true },
   isPaid: Boolean,
-  complex: [String],
+  complex: workoutComplex,
   exercises: [workoutExercises],
   owner: { type: Types.ObjectId, ref: 'Client' },
 });

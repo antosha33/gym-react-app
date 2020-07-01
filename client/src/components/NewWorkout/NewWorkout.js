@@ -90,21 +90,34 @@ const NewWorkout = () => {
     setToTableItems(...items);
   }
 
-  const onSubmitComplexHandler = () => {
+  const onSubmitComplexHandler = async () => {
+
     const newWorkout = {
       date: date,
-      name: toTableItems.name,
-      level: toTableItems.level,
-      exercises: toTableItems.exercises.map((it) => {
-        return {
-          id: it.name._id,
-          approachQuantity: it.approachQuantity,
-          repetitionsNumber: it.repetitionsNumber,
-          weight: exerciseWeight[it.name._id]
-        }
-      })
+      complex: {
+        name: toTableItems.name,
+        level: toTableItems.level,
+        exercises: toTableItems.exercises.map((it) => {
+          return {
+            id: it.name._id,
+            approachQuantity: it.approachQuantity,
+            repetitionsNumber: it.repetitionsNumber,
+            weight: exerciseWeight[it.name._id]
+          }
+        })
+      }
     }
-    console.log(newWorkout);
+
+    const response = await request('/workout/create', 'POST', { ...newWorkout }, { 'Authorization': `Bearer ${token}` });
+    setExercises({
+      null: [],
+    })
+
+    setToTableItems(null);
+    setIsExercises(true);
+    
+    emmiter.emmit('notify', response.message);
+
   }
 
   const onSubmitExerciseHandler = async () => {
@@ -171,6 +184,7 @@ const NewWorkout = () => {
             </div>
             {isExercises && <Select options={selectOptions}
               isSearchable={true}
+              isClearable={true}
               onChange={onSelectComplexChangeHandler}
               placeholder={'Выберите комплекс'}
             />}
